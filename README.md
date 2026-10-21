@@ -61,3 +61,45 @@ This repository is a **public portfolio only**. It does not contain proprietary 
 
 ---
 *Evidence-first engineering. Reproducible research. Human-controlled AI.*
+
+EKA AI Brain V6 — Engineering Milestone Update
+Date: October 21, 2026
+Organization: EKA V6 SYSTEMS LLC
+Project: Experimental adaptive event-processing architecture for resource-constrained FPGA systems
+Target platform: Lattice iCE40UP5K / UPduino 3.1
+
+Project overview
+EKA AI Brain V6 is a research-stage, Verilog-based adaptive event-processing system. Its architecture includes an optimized change detector, adaptive threshold logic, and telemetry mechanisms intended to support measurable, auditable processing of event streams on resource-constrained hardware.
+
+This update summarizes results contained in the project's engineering records. Simulation results, implementation-tool estimates, and physical-board measurements are separate categories of evidence.
+
+Engineering milestones
+Area	Documented result	Evidence category
+Top-level V6 functional tests	Test log reports ALL V6-OPT TOP LEVEL TESTS PASSED	RTL simulation
+Extended V6 stress test	10,000,000 simulated samples; zero threshold-range violations	RTL simulation
+Phase 9 metrics workload	30,000,000 simulated input samples; 21,980,390 detected events; zero threshold-range errors	RTL simulation
+Phase 6C.1 dense workload	631/631 labeled events detected (100% recall); zero dropped frames in the specified healthy test	RTL simulation
+Phase 7 FPGA implementation	iCE40UP5K SG48 build; 757 / 5,280 logic cells; 12 MHz timing target passed	Synthesis / place-and-route
+Phase 7 timing estimate	Estimated Fmax: 31.54 MHz	Implementation-tool estimate
+Separate V6 timing report	14.97 ns critical path; estimated 66.78 MHz	Timing-tool estimate for a different build
+Engineering preservation	Consolidated archive with original engineering artifacts and checksum inventory	Documentation / reproducibility
+Interpretation notes: The 30-million-input result is from simulation and does not establish 30 million physical FPGA clock cycles. The two timing figures describe different implementation reports and should not be presented as a direct before/after performance comparison. The dense-workload recall figure applies to the documented test conditions; separate fault-injection cases exposed limitations under some outage scenarios.
+
+Current verification boundary
+The engineering records demonstrate extensive RTL simulation and successful FPGA synthesis and routing for documented configurations. They do not yet independently establish:
+
+A completed, instrumented 30,000,000-clock-cycle run on a physical UPduino 3.1 board.
+Physical throughput matching the simulation workloads.
+Measured dynamic-power or energy savings against a controlled baseline.
+Independent third-party validation or production readiness.
+Next verification milestone
+The next target is a physical UPduino 3.1 test with 30,000,000 actual FPGA clock cycles. The proposed acceptance record will include the exact RTL/bitstream hashes, board and clock configuration, workload definition, start/end or completion evidence, output counters, error checks, and repeatability results. Input samples and FPGA clock cycles will be reported separately.
+
+Publication and intellectual-property note
+This public milestone report is a high-level summary. The complete engineering archive, detailed RTL, proprietary patterns, and full test data are not included in this public release. Publication of any additional source or artifacts should be reviewed by the project owner before committing to a public repository.
+
+Organization: EKA V6 SYSTEMS LLC
+Portfolio: https://singhbagnalia.github.io/eka-v6-portfolio/
+GitHub: https://github.com/singhbagnalia
+Tagline: Building adaptive, auditable computing systems.
+
