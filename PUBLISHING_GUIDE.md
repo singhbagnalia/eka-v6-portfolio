@@ -1,9 +1,17 @@
-# Publish this portfolio on GitHub
+# Safe publication workflow
 
-1. Sign in at https://github.com and select **New repository**.
-2. Name it `eka-v6-portfolio`, select **Public**, and create the repository.
-3. Choose **Add file → Upload files**. Upload `README.md`, `index.html`, and `.gitignore` from this folder. Commit changes.
-4. Open **Settings → Pages**. Under **Build and deployment**, choose **Deploy from a branch**, select `main` and `/ (root)`, then **Save**.
-5. GitHub Pages will publish at `https://YOUR-USERNAME.github.io/eka-v6-portfolio/` after deployment. Replace YOUR-USERNAME with your actual account name.
+1. Keep private engineering files outside this public checkout.
+2. Read SECURITY.md and review the exact staged file list and diff.
+3. Run `python3 .github/scripts/upload_guard.py --staged` before committing;
+   run it without --staged to check the entire Git index before pushing.
+4. Run a redacted full-history Gitleaks scan. Never test with a real secret.
+5. Obtain owner approval before committing or pushing; use a separate branch
+   and pull request. Wait for the publication-guard check and human review.
+6. Merge only after explicit owner approval and verified main protection.
+7. Publish GitHub Pages from the approved main branch/root only. Verify the
+   live site after the deployment. Branch-source Pages must not serve private
+   content, and a failing post-upload CI check cannot undo public disclosure.
 
-**Before publishing:** Verify each research claim against your source logs. Do not upload proprietary Verilog, invention notebooks, private datasets, account details, tokens, or credentials. GitHub's public repository and Pages are publicly accessible. The `.gitignore` file does not prevent manual uploads through the web UI.
+The proposed local hook requires separate approval to enable:
+`git config --local core.hooksPath .githooks`
+GitHub web uploads bypass this hook; .gitignore does not block them.
